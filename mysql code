@@ -8,8 +8,12 @@ Table 2: Cab
   Column 3: availability
   
 Table 3: Booking 
-  Column 1: BookingId
+  Column 1: bookingId
   Column 2: customerId
   Column 3: cabId
   Column 4: distance
   Column 5: chargingAmount
+  
+Table 4: BookingHelper
+  Column 1: id
+  Column 2: tempBookingId
