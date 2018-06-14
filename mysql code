@@ -1,1 +1,15 @@
-
+TABLE 1: Customer
+  Column 1: customerId
+  Column 2: customerName
+  
+Table 2: Cab
+  Column 1: cabId
+  Column 2: driverName
+  Column 3: availability
+  
+Table 3: Booking 
+  Column 1: BookingId
+  Column 2: customerId
+  Column 3: cabId
+  Column 4: distance
+  Column 5: chargingAmount
