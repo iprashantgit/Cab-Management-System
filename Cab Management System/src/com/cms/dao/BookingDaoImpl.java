@@ -26,7 +26,7 @@ public class BookingDaoImpl implements BookingDao {
 	public void addBooking(Booking booking) {
 		
 		try {
-			String queryString = "INSERT INTO Booking(bookingId, customerId, cabId, distance, chargingAmount) VALUES(?,?,?)";
+			String queryString = "INSERT INTO Booking(bookingId, customerId, cabId, distance, chargingAmount) VALUES(?,?,?,?,?)";
 			connection = getConnection();
 			ptmt = connection.prepareStatement(queryString);
 			ptmt.setInt(1, booking.getBookingId());

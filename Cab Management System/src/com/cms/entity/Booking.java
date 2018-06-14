@@ -5,13 +5,16 @@ public class Booking {
 		
 		private int distance;
 		private static int bookingId = 1000;
-		protected int cabId;
+		private int cabId;
 		private int customerId;
 		private int billingAmount;
+		
 		
 		public Booking() {
 			
 			bookingId++;
+			System.out.println(bookingId);
+	        
 		}
 		
 		public int getBookingId() {

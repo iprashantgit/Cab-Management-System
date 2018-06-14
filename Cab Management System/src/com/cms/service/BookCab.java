@@ -1,36 +1,60 @@
 package com.cms.service;
 
+import com.cms.dao.BookingDao;
+import com.cms.dao.BookingDaoImpl;
 import com.cms.dao.CabDao;
 import com.cms.dao.CabDaoImpl;
 import com.cms.entity.Booking;
 
-public class BookCab  {
-		
+
+public class BookCab {
 	
-
-		public Booking bookCab(Booking book, int distance, int customerId){
+	
+		public void bookCab(int distance, int customerId){
 			
 			
-			CabDao cabdao = new CabDaoImpl();
 			
-			book.setDistance(distance);
-			book.setCustomerId(customerId);
-			book.setCabId(cabdao.getCabId()); 
+			CabDao cabDao = new CabDaoImpl();
+			int cabId = cabDao.getCabId();
 			
-			if(distance>10) {book.setBillingAmount(305 + (distance-10)*25);}
-			else if (distance <10 & distance>5) {
+			if(cabId!=0) {
 				
-				book.setBillingAmount(180 + (distance-5)*25);
-			}
-			else if (distance <5 & distance>1) {
+				Booking book = new Booking();
+				book.setDistance(distance);
+				book.setCustomerId(customerId);
 				
-				book.setBillingAmount(100 + (distance-1)*20);
-			}
-			else 	book.setBillingAmount(100);
+				book.setCabId(cabId);
+				
+				if(distance>10) {book.setBillingAmount(305 + (distance-10)*25);}
+				else if (distance <10 & distance>5) {
+					
+					book.setBillingAmount(180 + (distance-5)*25);
+				}
+				else if (distance <5 & distance>1) {
+					
+					book.setBillingAmount(100 + (distance-1)*20);
+				}
+				else 	book.setBillingAmount(100);
+				
+				// invoke doa methods
+				//update booking details to the db
+				BookingDao bookingdao = new BookingDaoImpl();
+				bookingdao.addBooking(book);
+				
+				// change status of that cab 
+				ChangeStatus changeStatus = new ChangeStatus();
 
-			return book;
+				changeStatus.updateStatus(book.getCabId(),false);
+
+			
+			}else
+			{System.out.println("Booking is not confirmed, Since no cabs are available at the moment.");}
+			
+			
+			
+			
+			
 		}
-		
-		
+
 		
 }

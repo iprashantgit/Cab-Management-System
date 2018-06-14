@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import com.cms.entity.Cab;
 import com.cms.helper.DbUtil;
@@ -13,6 +14,7 @@ public class CabDaoImpl implements CabDao{
 	Connection connection = null;
 	PreparedStatement ptmt = null;
 	ResultSet resultSet = null;
+	
 	
 	public CabDaoImpl() {};
 	
@@ -52,16 +54,20 @@ public class CabDaoImpl implements CabDao{
 	
 	
 		public int getCabId() {
-		
-		int cabId=0;
+			int cabId = 0;
 		
 		try {
-			String queryString = "SELECT * FROM CAB WHERE AVAILABILITY = 1";
+			String queryString = "SELECT cabId FROM CAB WHERE AVAILABILITY = 1";
 			connection = getConnection();
-			ptmt = connection.prepareStatement(queryString);
-			resultSet = ptmt.executeQuery();
-			cabId = resultSet.getInt(cabId);
-			
+			Statement st = connection.createStatement();
+		    ResultSet rs = st.executeQuery(queryString);
+		    
+		    if(rs.next()){
+		    	cabId = rs.getInt(1);
+		    	
+		    	}
+		    
+		    
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -78,9 +84,46 @@ public class CabDaoImpl implements CabDao{
 			}
 
 		}
-
 		return cabId;
+		
 	}
+		
+		public void changeCabStatus(int cabId,boolean toChange) {
+			
+		
+		try {
+			String queryString = "update cab set availability = ? where cabId=?";
+			connection = getConnection();
+			ptmt = connection.prepareStatement(queryString);
+
+			ptmt.setBoolean(1, toChange);
+			ptmt.setInt(2, cabId);
+			
+			int rowsUpdated = ptmt.executeUpdate();
+			if (rowsUpdated > 0) {
+			    System.out.println("An existing cab status has been updated successfully!");
+			}
+			
+	
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (ptmt != null)
+					ptmt.close();
+				if (connection != null)
+					connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		}
+		
+	}
+
 
 	
 	

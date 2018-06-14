@@ -10,6 +10,7 @@ import com.cms.entity.Booking;
 import com.cms.entity.Cab;
 import com.cms.entity.Customer;
 import com.cms.service.BookCab;
+import com.cms.service.ChangeStatus;
 
 
 public class MainView {
@@ -24,19 +25,32 @@ public class MainView {
 		
 		
 		--- Unit Testing of Cab
-		Cab cab1 = new Cab(101,"Satendra Singh");
+		Cab cab1 = new Cab(103,"Aman Hooda");
 		CabDao cabDao = new CabDaoImpl();
 		cabDao.addCab(cab1);
 		
 		*/
 		
-		Booking book1 = new Booking();
-		BookCab bc = new BookCab();
-		book1 = bc.bookCab(book1, 8, 691736);
+		//Booking book1 = new Booking();
+		//BookCab bookCab = new BookCab();
+		//bookCab.bookCab(book1, 8, 691736);
+		/* 
 		
+	        
+	    
 		
-		BookingDao bookingDao = new BookingDaoImpl();
-		bookingDao.addBooking(book1);
+			ChangeStatus changeStatus = new ChangeStatus();
+			changeStatus.updateStatus(101, true);
+			changeStatus.updateStatus(102, true);
+			changeStatus.updateStatus(103, true);
+
+		*/	
+		for (int i = 0; i < 3; ++i) {
+	        BookCab bookcab = new BookCab();
+	       
+	        bookcab.bookCab(9, 691740);
+		
+		}
 	}
 
 }
