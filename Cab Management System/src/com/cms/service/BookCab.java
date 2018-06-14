@@ -2,6 +2,8 @@ package com.cms.service;
 
 import com.cms.dao.BookingDao;
 import com.cms.dao.BookingDaoImpl;
+import com.cms.dao.BookingHelperDao;
+import com.cms.dao.BookingHelperDaoImpl;
 import com.cms.dao.CabDao;
 import com.cms.dao.CabDaoImpl;
 import com.cms.entity.Booking;
@@ -12,6 +14,7 @@ public class BookCab {
 	
 		public void bookCab(int distance, int customerId){
 			
+			BookingHelperDao  bookinghelperdao = new BookingHelperDaoImpl();
 			
 			
 			CabDao cabDao = new CabDaoImpl();
@@ -20,6 +23,9 @@ public class BookCab {
 			if(cabId!=0) {
 				
 				Booking book = new Booking();
+				bookinghelperdao.setBookingId();//increamenting id in db
+				book.setBookingId(bookinghelperdao.getBookingId());//fetching id from db
+				
 				book.setDistance(distance);
 				book.setCustomerId(customerId);
 				

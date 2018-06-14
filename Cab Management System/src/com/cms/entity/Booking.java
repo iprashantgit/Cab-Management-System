@@ -4,24 +4,22 @@ package com.cms.entity;
 public class Booking {
 		
 		private int distance;
-		private static int bookingId = 1000;
+		private static int bookingId;
 		private int cabId;
 		private int customerId;
 		private int billingAmount;
 		
 		
-		public Booking() {
-			
-			bookingId++;
-			System.out.println(bookingId);
-	        
-		}
-		
-		public int getBookingId() {
+		public static int getBookingId() {
 			return bookingId;
 		}
-		
-		
+
+
+		public void setBookingId(int bookingId) {
+			Booking.bookingId = bookingId;
+		}
+
+
 		public int getDistance() {
 			return distance;
 		}
@@ -61,9 +59,6 @@ public class Booking {
 			this.billingAmount = billingAmount;
 		}
 
-		
-		
-		
-		
+			
 				
 }

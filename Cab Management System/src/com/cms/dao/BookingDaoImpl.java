@@ -23,6 +23,7 @@ public class BookingDaoImpl implements BookingDao {
 		return conn;
 	}
 	
+	
 	public void addBooking(Booking booking) {
 		
 		try {

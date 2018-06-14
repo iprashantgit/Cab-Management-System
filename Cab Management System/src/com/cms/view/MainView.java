@@ -2,6 +2,8 @@ package com.cms.view;
 
 import com.cms.dao.BookingDao;
 import com.cms.dao.BookingDaoImpl;
+import com.cms.dao.BookingHelperDao;
+import com.cms.dao.BookingHelperDaoImpl;
 import com.cms.dao.CabDao;
 import com.cms.dao.CabDaoImpl;
 import com.cms.dao.CustomerDao;
@@ -43,14 +45,23 @@ public class MainView {
 			changeStatus.updateStatus(101, true);
 			changeStatus.updateStatus(102, true);
 			changeStatus.updateStatus(103, true);
-
-		*/	
-		for (int i = 0; i < 3; ++i) {
+			
+			
+			
+			BookingHelperDao bookinghelper = new BookingHelperDaoImpl();
+		System.out.println(bookinghelper.getBookingId());
+*/
+			
+		
 	        BookCab bookcab = new BookCab();
 	       
 	        bookcab.bookCab(9, 691740);
-		
-		}
-	}
+	        bookcab.bookCab(4, 691743);
+	        bookcab.bookCab(3, 691732);
+	        
 
+		
+	}
 }
+
+
